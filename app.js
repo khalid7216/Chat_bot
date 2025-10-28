@@ -2,30 +2,24 @@
   const chat = document.getElementById("chat");
   const sendBtn = document.querySelector("button");
 
-  // ✅ Modern way: keydown event instead of keypress
   input.addEventListener("keydown", function (event) {
     if (event.key === "Enter") {
       sendMessage();
     }
   });
-
-  // ✅ Button click event
   sendBtn.addEventListener("click", sendMessage);
 
   function sendMessage() {
     const message = input.value.trim();
     if (message === "") return;
-
-    // User message show
     chat.innerHTML += `
       <div class="msg user">
         <div class="bubble">You: ${message}</div>
       </div>`;
 
-    // Get reply
     const reply = getBotReply(message.toLowerCase());
 
-    // Bot reply with delay
+
     setTimeout(() => {
       chat.innerHTML += `
         <div class="msg bot">
